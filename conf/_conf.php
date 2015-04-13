@@ -8,7 +8,7 @@ $singleimage = '';
  * Constantes
  */
 
-define('SERVER_BDD', 'localhost');
+define('DNS_BDD', 'mysql:host=localhost;dbname=tumblr');
 define('USER_BDD', 'root');
 define('MDP_BDD', '');
 define('BDD', 'tumblr');
