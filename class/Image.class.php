@@ -1,4 +1,6 @@
 <?php
+
+
 include './PDO.class.php';
 
 class Image 
@@ -174,7 +176,7 @@ class Image
         return $string;
     }
 
-
+}
 // try // on tente la connexion
 //     {
 //         $oPDO = new PDO('mysql:host=localhost;dbname=tumblr', 'root', '');
@@ -191,4 +193,4 @@ class Image
     //                 $data2->execute();
 
     //                 $result2= $data2->fetchAll(PDO::FETCH_BOTH);
-}
+
