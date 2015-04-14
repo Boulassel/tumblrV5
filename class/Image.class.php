@@ -73,7 +73,6 @@ class Image
             /* Récupère un tableau associatif */
             while ($image = mysqli_fetch_assoc($resImages)) 
             {
-
                 //Création d'un tableau associatif image=caption                
                 $tab_images[$image['idImage']]['caption'] = $image['captionImage'];
                 $tab_images[$image['idImage']]['nomImage'] = $image['nomImage'];
