@@ -1,9 +1,6 @@
 <?php
-/**
- * Description of Image
- *
- * @author samirboulassel
- */
+include './PDO.class.php';
+
 class Image 
 {
     private $nom;
