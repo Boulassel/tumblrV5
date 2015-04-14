@@ -56,7 +56,7 @@ class Image
     {
         try // on tente la connexion
         {
-            $oPDO = new PDO('mysql:host=localhost;dbname=tumblr', 'root', '');
+            $oPDO = new PDOp('mysql:host=localhost;dbname=tumblr', 'root', '');
         }
         catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
         {
@@ -92,7 +92,7 @@ class Image
 
         try // on tente la connexion
         {
-            $oPDO = new PDO('mysql:host=localhost;dbname=tumblr', 'root', '');
+            $oPDO = new PDOp('mysql:host=localhost;dbname=tumblr', 'root', '');
         }
         catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
         {
@@ -138,7 +138,7 @@ class Image
     {
         try // on tente la connexion
         {
-            $oPDO = new PDO('mysql:host=localhost;dbname=tumblr', 'root', '');
+            $oPDO = new PDOp('mysql:host=localhost;dbname=tumblr', 'root', '');
         }
         catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
         {
