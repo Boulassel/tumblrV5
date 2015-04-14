@@ -19,33 +19,41 @@ class Image
     
 
     //les get
-    public function getNomImg($new_nom)
+    public function getNomImg()
     {
-        return $this -> nom_image;
+        return $this -> nom;
     }
-    public function getCheminImg($new_chemin)
+    public function getCheminImg()
     {
-        return $this -> chemin_image ;
+        return $this -> chemin;
     }
-    public function getNomImg($new_id)
+    public function getNomImg()
     {
-        return $this -> id_image ;
+        return $this -> id;
+
+    public function getCaptionImg()
+    {
+        return $this -> caption;
 
 
 
     // les set
     public function setNomImg($new_nom)
     {
-        $this -> nom_image = $new_nom;
+        $this -> nom = $new_nom;
     }
     public function setCheminImg($new_chemin)
     {
-        $this -> chemin_image = $new_chemin;
+        $this -> chemine = $new_chemin;
     }
     public function setNomImg($new_id)
     {
-        $this -> id_image = $new_id;
+        $this -> id = $new_id;
     }
+    public function setCaptionImg($new_caption)
+    {
+        $this -> caption =^$new_caption;
+
 
 
 
