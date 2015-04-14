@@ -21,26 +21,42 @@ class Image
 
     
 
+    //les get
+    public function getNomImg($new_nom)
+    {
+        return $this -> nom_image;
+    }
+    public function getCheminImg($new_chemin)
+    {
+        return $this -> chemin_image ;
+    }
+    public function getNomImg($new_id)
+    {
+        return $this -> id_image ;
+
+
+
     // les set
-    public setNomImg($new_nom)
+    public function setNomImg($new_nom)
     {
         $this -> nom_image = $new_nom;
     }
-    public setCheminImg($new_chemin)
+    public function setCheminImg($new_chemin)
     {
         $this -> chemin_image = $new_chemin;
     }
-    public setNomImg($new_id)
+    public function setNomImg($new_id)
     {
         $this -> id_image = $new_id;
     }
+
 
 
     public function Ajout_Img_BDD($name, $caption)
     {
         try // on tente la connexion
         {
-            $oPDO = new PDO('mysql:host=localhost;dbname=twitr', 'root', '');
+            $oPDO = new PDO('mysql:host=localhost;dbname=tumblr', 'root', '');
         }
         catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
         {
@@ -76,7 +92,7 @@ class Image
 
         try // on tente la connexion
         {
-            $oPDO = new PDO('mysql:host=localhost;dbname=twitr', 'root', '');
+            $oPDO = new PDO('mysql:host=localhost;dbname=tumblr', 'root', '');
         }
         catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
         {
@@ -98,13 +114,13 @@ class Image
             return 'n\'est pas un objet valide';
         }   
 
-        if (fbsql_rows_fetched($resImages) > 0) 
+        if (fbsql_rows_fetched($result) > 0) 
         {
 
             /* Récupère un tableau associatif */
-            while ($image = mysqli_fetch_assoc($resImages)) 
+            while ($image = $result) 
             {
-                //Création d'un tableau associatif image=caption                
+                //Création d'un tableau associatif image=caption    
                 $tab_images[$image['idImage']]['caption'] = $image['captionImage'];
                 $tab_images[$image['idImage']]['nomImage'] = $image['nomImage'];
             }
@@ -120,13 +136,43 @@ class Image
 
     public getOneImg($id)
     {
+        try // on tente la connexion
+        {
+            $oPDO = new PDO('mysql:host=localhost;dbname=tumblr', 'root', '');
+        }
+        catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
+        {
+            echo '</br>';
+            echo "Echec lors de la connexion à mysql : (".$ex->getCode().")" ;
+            echo $ex->getMessage();
+            exit();
+        }
 
+        $tab_images = array();
+        $req_images = 'SELECT * FROM images WHERE idImage ='.$id;
+
+        $data = $oPDO->prepare($req_image);    
+        $result = $data->execute();
+
+        return $result;        
+    }
+
+    public function createfigure($nom_image, $caption)
+    {
+        $string = '';
+        $string .= '<figure>';
+        $string .= '<div class="blocimg">';
+        $string .= '<img src="'.DIR_IMG.'/img/'.$nom.'" alt="'.$lienimage.'">';
+        $string .= '</div>';
+        $string .= '<figcaption>'.$commentaire.'</figcaption>';
+        $string .= '</figure>';
+        return $string;
     }
 
 
 // try // on tente la connexion
 //     {
-//         $oPDO = new PDO('mysql:host=localhost;dbname=twitr', 'root', '');
+//         $oPDO = new PDO('mysql:host=localhost;dbname=tumblr', 'root', '');
 //     }
 //     catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
 //     {
