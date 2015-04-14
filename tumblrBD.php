@@ -4,6 +4,8 @@ define('APP_PATH', __DIR__);
 include (APP_PATH.'/conf/_conf.php');
 include (INC_DIR.'/functions.php');
 include (INC_DIR.'/header.php');
+include './class/PDO.class.php';
+include './class/Image2.class.php';
 
 //Initialisationd de la variable de connexion
 $connected = FALSE;
@@ -33,7 +35,7 @@ if(!empty($_FILES)) {
 
 if(isset($_SESSION['logged_in'])) {
     $connected = $_SESSION['logged_in'];
-    $tabImages = getImages($_SESSION['ID']);
+    $tabImages = Image2::getImages($_SESSION['ID']);
     
     if(isset($_SESSION['error'])) {
         $error = $_SESSION['error'];
@@ -42,7 +44,7 @@ if(isset($_SESSION['logged_in'])) {
     }
     
 } else {
-    $tabImages = getImages();
+    $tabImages = Image2::getImages();
 }
 
 //Récupère le tableaux d'images

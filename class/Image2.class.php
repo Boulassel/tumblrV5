@@ -5,12 +5,12 @@
  *
  * @author samirboulassel
  */
-include './PDO.class.php';
+//include '../PDO.class.php';
 class Image2 {
 
     private $id;
     private $nom_image;
-    private $caption_image; //
+    private $caption_image; //commentaire
 
     function __construct($id, $nom_image, $caption_image) {
         $this->id = $id;
@@ -42,40 +42,29 @@ class Image2 {
         $this->caption_image = $caption_image;
     }
 
-    function getImages() {
+    public static function getImages() {
         $tabImages = array();
-	$linkBDD = new p;
-	$reqImages = 'SELECT * FROM images';
-	$resImages = mysqli_query($linkBDD, $reqImages);
-        
-        if(!is_object($resImages)){
-            return 'n\'est pas un objet valide';
-        }    
-        
-        if (mysqli_num_rows($resImages) > 0) {
-
-            /* Récupère un tableau associatif */
-            while ($image = mysqli_fetch_assoc($resImages)) {
-
+        $pdo = new PDOp;
+        $link = $pdo->getPDO();
+        //var_dump($link);
+        if (1) {
+            foreach ($link->query('SELECT * FROM images') as $image) {
                 //Création d'un tableau associatif image=caption
-                
-                $tabImages[$image['idImage']]['caption'] = $image['captionImage'];
-                $tabImages[$image['idImage']]['nomImage'] = $image['nomImage'];
 
-                if(empty($image['real_path'])) {
-                    $tabImages[$image['idImage']]['path'] = $image['nomImage'];
+                $tabImages[$image['id']]['caption'] = $image['caption_image'];
+                $tabImages[$image['id']]['nom_image'] = $image['nom_image'];
+
+                if (empty($image['real_path'])) {
+                    $tabImages[$image['id']]['path'] = $image['nom_image'];
                 } else {
-                    $tabImages[$image['idImage']]['path'] = $image['real_path'];
+                    $tabImages[$image['id']]['path'] = $image['real_path'];
                 }
-                
-             
             }
-
+            var_dump($image);
         } else {
             return 'Rien dans la base ...';
         }
-	closeBDD($linkBDD);
-                
         return $tabImages; //Renvoi le tableau
-}
+    }
+
 }

@@ -77,7 +77,43 @@ function createImage($fileImage,$captionImage) {
 	//echo $resImages;
 }
 
-
+//   function getImages() {
+//        $tabImages = array();
+//	$linkBDD = createLinkBDD();
+//        var_dump($linkBDD);
+//	$reqImages = 'SELECT * FROM images';
+//	$resImages = mysqli_query($linkBDD, $reqImages);
+//        
+//        if(!is_object($resImages)){
+//            return 'n\'est pas un objet valide';
+//        }    
+//        
+//        if (mysqli_num_rows($resImages) > 0) {
+//
+//            /* Récupère un tableau associatif */
+//            while ($image = mysqli_fetch_assoc($resImages)) {
+//
+//                //Création d'un tableau associatif image=caption
+//                
+//                $tabImages[$image['id']]['caption_image'] = $image['caption_image'];
+//                $tabImages[$image['id']]['nom_image'] = $image['nom_image'];
+//
+//                if(empty($image['real_path'])) {
+//                    $tabImages[$image['id']]['path'] = $image['nom_image'];
+//                } else {
+//                    $tabImages[$image['id']]['path'] = $image['real_path'];
+//                }
+//                
+//             
+//            }
+//
+//        } else {
+//            return 'Rien dans la base ...';
+//        }
+//	closeBDD($linkBDD);
+//                
+//        return $tabImages; //Renvoi le tableau
+//}
 
 /*
  * Fonction qui n'est plus utilisée 
