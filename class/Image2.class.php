@@ -2,17 +2,16 @@
 
 /**
  * Description of Image2
- *
+ * @class Image2 : une classe
  * @author samirboulassel
  */
-//include '../PDO.class.php';
 class Image2 {
 
     private $id;
     private $nom_image;
-    private $caption_image; //commentaire
-
-    function __construct($id, $nom_image, $caption_image) {
+    private $caption_image; //$caption est un commentaire
+    private $idUser;
+                function __construct($id, $nom_image, $caption_image) {
         $this->id = $id;
         $this->nom_image = $nom_image;
         $this->caption_image = $caption_image;
@@ -29,8 +28,11 @@ class Image2 {
     function getCaption_image() {
         return $this->caption_image;
     }
+    function getIdUser() {
+        return $this->idUser;
+    }
 
-    function setId($id) {
+        function setId($id) {
         $this->id = $id;
     }
 
@@ -41,7 +43,13 @@ class Image2 {
     function setCaption_image($caption_image) {
         $this->caption_image = $caption_image;
     }
+    function setIdUser($idUser) {
+        $this->idUser = $idUser;
+    }
 
+        /*
+     * @function getImages : une méthode qui retourne un tableau assossiatif d'images
+     */
     public static function getImages() {
         $tabImages = array();
         $pdo = new PDOp;
@@ -53,14 +61,12 @@ class Image2 {
 
                 $tabImages[$image['id']]['caption'] = $image['caption_image'];
                 $tabImages[$image['id']]['nom_image'] = $image['nom_image'];
-
-                if (empty($image['real_path'])) {
+                var_dump($tabImages);
                     $tabImages[$image['id']]['path'] = $image['nom_image'];
-                } else {
-                    $tabImages[$image['id']]['path'] = $image['real_path'];
-                }
+                    $tabImages[$image['id']]['idUser'] = $image['idUser'];
+               
             }
-            var_dump($image);
+            //var_dump($image);
         } else {
             return 'Rien dans la base ...';
         }

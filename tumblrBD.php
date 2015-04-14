@@ -78,7 +78,7 @@ if(!is_array($tabImages)) {
             
             foreach ($tabImages as $imageID => $image) {
                 ?>
-            <option value="<?php echo $imageID ?>"><?php echo $image['nomImage'];?></option>
+            <option value="<?php echo $imageID ?>"><?php echo $image['nom_image'];?></option>
             <?php
             }
             
@@ -100,13 +100,13 @@ if(!is_array($tabImages)) {
 ?>       
         <figure class="">
             <div class="blocimg">
-            <img src="<?php echo DIR_IMG.'/'.$image['path'];?>" alt="<?php echo $image['nomImage'];?>">
+            <img src="<?php echo DIR_IMG.'/'.$image['path'];?>" alt="<?php echo $image['nom_image'];?>">
             </div>
             
             <figcaption><?php echo $image['caption'].' ';?>
             <?php   if(isset($_SESSION['ID']))  {
                         if($image['idUser'] == $_SESSION['ID']) { ?>
-                <a href="delete.php?idImage=<?php echo $image['idImage'];?>" title="Supprimer">X</a>
+                <a href="delete.php?idImage=<?php echo $image['id_image'];?>" title="Supprimer">X</a>
             <?php       }
                     }?>
             </figcaption>
@@ -121,7 +121,7 @@ if(!is_array($tabImages)) {
         ?>
         <figure class="">
             <div class="blocimg"><img src="<?php echo DIR_IMG.'/'.$tabImages[$singleimage]['path'];?>" 
-                                      alt="<?php echo $tabImages[$singleimage]['nomImage'];?>">
+                                      alt="<?php echo $tabImages[$singleimage]['nom_image'];?>">
             </div>
             <figcaption><?php echo $tabImages[$singleimage]['caption'];?></figcaption>
         </figure>
