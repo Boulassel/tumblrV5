@@ -27,23 +27,23 @@ class User {
     }
 
     public setLogin(){
-        $this->id=$new_login;
+        $this->login=$new_login;
     }
 
     public setNom(){
-        $this->id=$new_nom;
+        $this->nom=$new_nom;
     }
 
     public setPrenom(){
-        $this->id=$new_prenom;
+        $this->prenom=$new_prenom;
     }
 
     public setPassword(){
-        $this->id=$new_password;
+        $this->password=$new_password;
     }
 
     public setCeated_on(){
-        $this->id=$new_created_on;
+        $this->created_on=$new_created_on;
     }
 
     function createLinkBDD (){
