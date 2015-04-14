@@ -134,7 +134,7 @@ class Image
     }
 
 
-    public getOneImg($id)
+    public function getOneImg($id)
     {
         try // on tente la connexion
         {
