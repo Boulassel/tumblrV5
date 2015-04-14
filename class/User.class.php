@@ -22,42 +22,69 @@ class User {
 
     }
 
-    public setId(){
+//Méthodes Get
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getLogin(){
+        return $this->login;
+    }
+
+    public function getNom(){
+        return $this->nom;
+    }
+
+    public function getPrenom(){
+        return $this->prenom;
+    }
+
+    public function getPassword(){
+        return $this->password;
+    }
+
+    public function getCreated_on(){
+        return $this->created_on;
+    }
+
+
+//Méthodes set
+    public function setId($new_id){
         $this->id=$new_id;
     }
 
-    public setLogin(){
+    public function setLogin($new_login){
         $this->login=$new_login;
     }
 
-    public setNom(){
+    public function setNom($new_nom){
         $this->nom=$new_nom;
     }
 
-    public setPrenom(){
+    public function setPrenom($new_prenom){
         $this->prenom=$new_prenom;
     }
 
-    public setPassword(){
+    public function setPassword($new_password){
         $this->password=$new_password;
     }
 
-    public setCeated_on(){
+    public function setCreated_on($new_created_on){
         $this->created_on=$new_created_on;
     }
 
-    function createLinkBDD (){
-    $link = mysqli_connect('localhost', USER_BDD, MDP_BDD , BDD);
-
-    /* Vérification de la connexion */
-    if (mysqli_connect_errno()) {
-        printf("Échec de la connexion : %s\n", mysqli_connect_error());
+    function newPDO() {
+    try {
+        $oPDO = new PDO('mysql:host=localhost;dbname='.BDD, USER_BDD, MDP_BDD);
+    } catch (PDOException $ex) {
+        echo '<br/>';
+        echo "Echec lors de la connexion à MySQL : (" . $ex->getCode() . ") "; 
+        echo $ex->getMessage();
         exit();
     }
-    return $link;
 }
 
-    public function create_user(){
+    public function create_user($new_login,$new_nom, $new_prenom, $new_password){
         $reqUser = 'INSERT INTO users (login,nom,prenom,password) ';
         $$reqUser .= 'VALUES ("'$new_login.'","'.$new_nom.'","'.$new_prenom.'","'.$new_password.'",';
         $$resUser = mysqli_query($linkBDD, $reqUser);
