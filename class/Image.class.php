@@ -6,10 +6,10 @@
  */
 class Image 
 {
-    public $nom;
-    public $chemin;
-    public $id;
-    public $caption
+    private $nom;
+    private $chemin;
+    private $id;
+    private $caption;
 
     public function __Construct($name, $dir, $id, $caption)
     {
