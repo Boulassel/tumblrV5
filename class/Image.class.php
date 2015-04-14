@@ -14,7 +14,7 @@ class Image
     public function __Construct($name, $dir, $id, $caption)
     {
         $this -> nom = $nom;
-        $this -> chemin = $dir
+        $this -> chemin = $dir;
         $this -> id = $id;
         $this -> caption = $caption;           
     }
@@ -74,7 +74,7 @@ class Image
         {
             $data = $oPDO->prepare($req_image);    
             $data->execute();
-            echo "image enregistrée avec succès ! WAZZAAAAAA"
+            echo "image enregistrée avec succès ! WAZZAAAAAA";
         }
         catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
         {
