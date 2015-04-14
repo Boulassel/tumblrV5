@@ -36,38 +36,69 @@ class Image
     }
 
 
-    public Ajout_Img_BDD($name, $caption)
+    public function Ajout_Img_BDD($name, $caption)
     {
+        try // on tente la connexion
+        {
+            $oPDO = new PDO('mysql:host=localhost;dbname=twitr', 'root', '');
+        }
+        catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
+        {
+            echo '</br>';
+            echo "Echec lors de la connexion à mysql : (".$ex->getCode().")" ;
+            echo $ex->getMessage();
+            exit();
+        }
+           
+
         $req_image = 'INSERT INTO images (nomImage,captionImage) ';
         $req_image .= 'VALUES ("'.$name.'","'.$caption.'",';
         
-
         try
         {
-            $linkBDD = createLinkBDD();
-            $resultat = mysqli_query($linkBDD, $req_image);
+            $data = $oPDO->prepare($req_image);    
+            $data->execute();
+            echo "image enregistrée avec succès ! WAZZAAAAAA"
         }
-        catch 
+        catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
         {
-            echo "erreur dans l'insertion ou la connexion de l'image dans la base";
+            echo '</br>';
+            echo "Echec lors de l'insertion dans la base : (".$ex->getCode().")" ;
+            echo $ex->getMessage();
+            exit();
         }
 
     }
 
 
-    public getAllImg()
+    public function getAllImg()
     {
-        $tab_images = array();
-        $linkBDD = createLinkBDD();
-        $req_images = 'SELECT * FROM images';
-        $resultat = mysqli_query($linkBDD, $req_images);
 
-        if(!is_object($resultat))
+        try // on tente la connexion
+        {
+            $oPDO = new PDO('mysql:host=localhost;dbname=twitr', 'root', '');
+        }
+        catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
+        {
+            echo '</br>';
+            echo "Echec lors de la connexion à mysql : (".$ex->getCode().")" ;
+            echo $ex->getMessage();
+            exit();
+        }
+
+        $tab_images = array();
+        $req_images = 'SELECT * FROM images';
+        
+        $data = $oPDO->prepare($req_image);    
+        $data->execute();
+        $result= $data->fetchAll(PDO::FETCH_BOTH);
+
+        if(!is_object($result))
         {
             return 'n\'est pas un objet valide';
         }   
 
-        if (mysqli_num_rows($resImages) > 0) 
+        if (fbsql_rows_fetched($resImages) > 0) 
         {
 
             /* Récupère un tableau associatif */
@@ -82,8 +113,7 @@ class Image
         {
             return 'Rien dans la base ...';
         }
-        closeBDD($linkBDD);
-                
+               
         return $tab_images; //Renvoi le tableau
     }
 
@@ -93,4 +123,21 @@ class Image
 
     }
 
+
+// try // on tente la connexion
+//     {
+//         $oPDO = new PDO('mysql:host=localhost;dbname=twitr', 'root', '');
+//     }
+//     catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
+//     {
+//         echo '</br>';
+//         echo "Echec lors de la connexion à mysql : (".$ex->getCode().")" ;
+//         echo $ex->getMessage();
+//         exit();
+//     }
+
+    // $data2 = $oPDO->prepare($query2);    
+    //                 $data2->execute();
+
+    //                 $result2= $data2->fetchAll(PDO::FETCH_BOTH);
 }
