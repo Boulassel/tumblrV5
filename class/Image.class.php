@@ -1,9 +1,6 @@
 <?php
-/**
- * Description of Image
- *
- * @author samirboulassel
- */
+include './PDO.class.php';
+
 class Image 
 {
     private $nom;
@@ -14,7 +11,7 @@ class Image
     public function __Construct($name, $dir, $id, $caption)
     {
         $this -> nom = $nom;
-        $this -> chemin = $dir
+        $this -> chemin = $dir;
         $this -> id = $id;
         $this -> caption = $caption;           
     }
@@ -22,33 +19,41 @@ class Image
     
 
     //les get
-    public function getNomImg($new_nom)
+    public function getNomImg()
     {
-        return $this -> nom_image;
+        return $this -> nom;
     }
-    public function getCheminImg($new_chemin)
+    public function getCheminImg()
     {
-        return $this -> chemin_image ;
+        return $this -> chemin;
     }
-    public function getNomImg($new_id)
+    public function getNomImg()
     {
-        return $this -> id_image ;
+        return $this -> id;
+
+    public function getCaptionImg()
+    {
+        return $this -> caption;
 
 
 
     // les set
     public function setNomImg($new_nom)
     {
-        $this -> nom_image = $new_nom;
+        $this -> nom = $new_nom;
     }
     public function setCheminImg($new_chemin)
     {
-        $this -> chemin_image = $new_chemin;
+        $this -> chemine = $new_chemin;
     }
     public function setNomImg($new_id)
     {
-        $this -> id_image = $new_id;
+        $this -> id = $new_id;
     }
+    public function setCaptionImg($new_caption)
+    {
+        $this -> caption =^$new_caption;
+
 
 
 
@@ -74,7 +79,7 @@ class Image
         {
             $data = $oPDO->prepare($req_image);    
             $data->execute();
-            echo "image enregistrée avec succès ! WAZZAAAAAA"
+            echo "image enregistrée avec succès ! WAZZAAAAAA";
         }
         catch(PDOException $ex) //si ça ne marche pas on affiche l'erreur
         {
