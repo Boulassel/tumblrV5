@@ -9,7 +9,7 @@ class PDO {
 
     private $PDO = NULL;
 
-    public static function __construct($param) {
+    public static function __construct() {
         try {
             $this->PDO = new PDO(DNS_BDD, USER_BDD, MDP_BDD, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
         } catch (Exception $e) {
